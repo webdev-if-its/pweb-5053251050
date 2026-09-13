@@ -60,7 +60,7 @@ Lihat juga tab browser kalian. Judulnya kosong atau asal-asalan — itu
 masalah lain yang juga perlu dibetulkan.
 
 Ada satu hal lagi: bahasa dokumen ini belum diatur. Ini biasanya tidak
-kedengaran bedanya kalau kalian coba pakai pembaca layar bawaan Windows/Mac,
+kedengaran bedanya kalau kalian coba pakai pembaca layar bawaan Windows/Mac,  
 karena suara Bahasa Indonesia biasanya belum terpasang di komputer
 kebanyakan orang. Jadi jangan andalkan telinga untuk yang satu ini.
 
