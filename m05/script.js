@@ -52,7 +52,7 @@ export function tandaiPengumumanPenting() {
 }
 
 // Level 5 — TODO: buat SATU elemen <article> untuk satu buku, memakai
-// document.createElement dan textContent (BUKAN innerHTML — aturan ini
+// document.createElement dan textContent (BUKAN  — aturan ini
 // berlaku untuk seluruh file, bukan cuma fungsi ini).
 // Struktur minimal: <article><h3>judul</h3><p>penulis</p><p>harga</p></article>
 // Kembalikan elemen itu (jangan langsung ditempel ke halaman di sini).
@@ -90,13 +90,26 @@ export function render(data) {
   katalogElement.textContent = '';
   ringkasan.textContent = data.length + ' buku ditemukan';
 
+  if (data.length === 0) {
+    const pesan = document.createElement('p');
+    pesan.textContent = 'Tidak ada buku yang cocok.';
+    katalogElement.appendChild(pesan);
+    return;
+  }
+
   for (const buku of data) {
     const kartu = buatKartuBuku(buku);
+
+    kartu.onclick = function() {
+      tampilkanDetail(buku);
+    };
+
     katalogElement.appendChild(kartu);
   }
 }
+
 // Level 7 — dipanggil saat sebuah kartu diklik. TODO: tampilkan judul,
-// penulis, dan harga buku itu di #panel-detail (textContent, bukan innerHTML).
+// penulis, dan harga buku itu di #panel-detail (textContent, bukan ).
 function tampilkanDetail(buku) {
   const panel = document.querySelector('#panel-detail');
 
@@ -112,7 +125,20 @@ function tampilkanDetail(buku) {
 //   mengandung kata itu (tanpa peduli huruf besar/kecil), lalu panggil
 //   render(hasil) — bukan menulis ulang kode tampilan di sini.
 export function pasangFormCari() {
-  // tulis di sini
+  const form = document.querySelector('#form-cari');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const input = document.querySelector('#input-cari');
+    const kataKunci = input.value.toLowerCase();
+
+    const hasil = katalog.filter(buku =>
+      buku.judul.toLowerCase().includes(kataKunci)
+    );
+
+    render(hasil);
+  });
 }
 
 // Bootstrap halaman — jangan hapus, ini yang membuat halaman "hidup" saat
